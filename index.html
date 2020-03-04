@@ -5,11 +5,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> -->
 </head>
 
 <body>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script> -->
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script> -->
+
+  <!-- Add Firebase products that you want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script> -->
   <label for="email">Enter your email:</label>
   <input type="email" id="email" name="email">
+  <input type="submit" value="Send now" onclick="onDetailsSubmit(document.getElementById('email').value)" />
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDTfuAcNiLkesoEqBnzjgMEOAUptc_Jchc",
+      authDomain: "buildingappswithangularf-c2527.firebaseapp.com",
+      databaseURL: "https://buildingappswithangularf-c2527.firebaseio.com",
+      projectId: "buildingappswithangularf-c2527",
+      storageBucket: "buildingappswithangularf-c2527.appspot.com",
+      messagingSenderId: "634206086102",
+      appId: "1:634206086102:web:1400b07fc3aa5022a3fa77"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    function makeid(length) {
+      var result = '';
+      var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+    }
+    function onDetailsSubmit(email) {
+      firebase.database().ref('users/' + makeid(5)).set({
+
+        email: email,
+
+      })
+    }
+  </script>
+
+
+
 </body>
 
 </html>
