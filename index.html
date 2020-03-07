@@ -21,6 +21,7 @@
     }
 
     input[type=email],
+    input[type=text],
     input[type=submit] {
       width: 100%;
       padding: 12px;
@@ -65,17 +66,18 @@
   <!-- <form action="/action_page.php"> -->
   <div class="container">
     <h2>Subscribe to our Newsletter</h2>
-    <p>Lorem ipsum text about why you should subscribe to our newsletter blabla. Lorem ipsum text about why you should
-      subscribe to our newsletter blabla.</p>
+
   </div>
 
   <div class="container" style="background-color:white">
     <!-- <input type="text" placeholder="Name" name="name" required> -->
+    <input type="text" placeholder="Your Name" name="name" id="name" required>
     <input type="email" placeholder="Email address" name="mail" id="email" required>
   </div>
 
   <div class="container">
-    <input type="submit" value="Subscribe" onclick="onDetailsSubmit(document.getElementById('email').value)">
+    <input type="submit" value="Send me my free cheat sheet"
+      onclick="onDetailsSubmit(document.getElementById('email').value,document.getElementById('name').value)">
   </div>
   <!-- </form> -->
 
@@ -114,9 +116,10 @@
       }
       return result;
     }
-    function onDetailsSubmit(email) {
-      firebase.database().ref('users/' + makeid(5)).set({
 
+    function onDetailsSubmit(email, name) {
+      firebase.database().ref('users/' + makeid(5)).set({
+        name: name,
         email: email,
 
       })
